@@ -1,13 +1,16 @@
 Template.login.events = {
   'click #login': 
     function (event, template) { 
-      Meteor.loginWithPassword(template.find('#username').value, template.find('#password').value, function(error) {
-        template.find('#username').value = "";
-        template.find('#password').value = "";
+      var u = template.find('#username').value;
+      var p = template.find('#password').value;
+      template.find('#username').value = "";
+      template.find('#password').value = "";
+      
+      Meteor.loginWithPassword(u, p, function(error) {
         if (error) {
           Global.alert('error', "Login Failed");
         } else {
-          Global.start();
+          Router.navigateTo("/");
         }
       });
     }

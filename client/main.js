@@ -1,25 +1,23 @@
-Meteor.startup(function() { 
-  Router = new Router();
-  Backbone.history.start();
-  
-  Meteor.subscribe("tasks");
-  Meteor.subscribe("directory", function(){
-    Global.start();
+Meteor.startup(function() {
+  // users  
+  Meteor.subscribe("directory", function() {
+    Router = new Router();
+    Backbone.history.start();
   });
+  
+  // tasks
+  Meteor.subscribe("tasks");
 });
 
-Global = { 
-  start: function() {
-    var user = Meteor.user();
-    if (user) {
-      if (user.profile.role === "manager") {
-        Router.navigateTo('managerMenu');
-      } else {
-        Router.navigateTo('staffTaskList');
-      }
-    }
-  }, 
-  
+
+
+
+
+
+
+
+
+Global = {   
   alert: function(type, message) {
     className = 'alert';
     if(type == 'warning' || type == 'info' || type == 'error') {

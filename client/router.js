@@ -23,14 +23,23 @@ Router = Backbone.Router.extend({
     ":page/:action/": "actionPage",
     ":page": "basicPage",
     ":page/": "basicPage",
-    "": "loginPage",
-    "/": "loginPage",
+    "": "startPage",
+    "/": "startPage",
   },
   
-  loginPage: function() {
-    console.log("Router: page=login (default)");
+  startPage: function() {
     // check if user is set....
-    this.pageExists('login') && Template['login'].render();
+    var user = Meteor.user();
+    if (user && user.profile) {
+      if (user.profile.role === "manager") {
+        Router.navigateTo('managerMenu');
+      } else {
+        Router.navigateTo('staffTaskList');
+      }
+    } else {
+      console.log("Router: page=login (default)");
+      this.pageExists('login') && Template['login'].render();
+    }
   },
   
   basicPage: function(page) {

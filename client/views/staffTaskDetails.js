@@ -1,10 +1,10 @@
 Template.staffTaskDetails.show = function(options) {
-  Session.set("selected-task", Tasks.findOne(options.id));
+  Session.set("selected-taskId", options.id);
   return this;
 }
 
 Template.staffTaskDetails.task = function() {
-  return Session.get("selected-task");
+  return Tasks.findOne(Session.get("selected-taskId"));
 }
 
 Template.staffTaskDetails.render = function() {  
