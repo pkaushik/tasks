@@ -1,0 +1,20 @@
+<template name="managerAssignTask">
+  <table>
+    <thead>
+      <tr>
+        <th>Staff Name</th>
+        <th>Task</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each items}}
+        <tr class="assign" id="{{_id}}">
+          <td>{{assigned}}</td>
+          <td>{{name}}</td>
+          <td>{{status}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>

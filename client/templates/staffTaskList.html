@@ -1,0 +1,15 @@
+<template name="staffTaskList">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="active">
+      <a>
+        <div class="row">
+          <div class="span5">Task</div> 
+          <div class="span5">Status</div>
+        </div>
+      </a>
+    </li>
+    {{#each tasks}}
+      {{> staffTaskListItem}}
+    {{/each}}
+  </ul>
+</template>

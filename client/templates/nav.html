@@ -1,0 +1,26 @@
+<template name="nav">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        
+        <a class="brand" href="/" >Task Manager</a>
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            {{#if currentUser}}
+              <li>
+                <a>Options</a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a id='logout'>Logout</a>
+              </li>  
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
