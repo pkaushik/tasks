@@ -5,21 +5,12 @@
         <div class="row">
           <div class="span3">Assigned To</div> 
           <div class="span3">Task</div> 
-          <div class="span3">Status</div>
+          <div class="span1">Status</div>
         </div>
       </a>
     </li>
-    
-    {{#each TASKS}}
-      <li>
-        <a href="#managerTaskDetail/show?id={{_id}}">
-          <div class="row">
-            <div class="span3">{{ASSIGNED_NAME assigned}}</div> 
-            <div class="span3">{{name}}</div> 
-            <div class="span3">{{status}}</div>
-          </div>
-        </a>
-      </li>
+    {{#each tasks}}
+      ++{{> managerTaskListItem}}
     {{/each}}
   </ul>
 </template>

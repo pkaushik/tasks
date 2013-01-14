@@ -3,7 +3,7 @@
   <ul class="nav nav-tabs nav-stacked">
     {{#if statusCount "R"}}
       <li>
-        <a href="#managerTaskList/filter?status=R">
+        <a href="#managerTaskList/filter?field=status&value=R">
           <div class="row">
             <div class="span1">Red</div>
             <div class="span1"><span class="label label-important"> {{statusCount "R"}} </span></div>
@@ -22,7 +22,7 @@
     {{/if}}
     {{#if statusCount "Y"}}
       <li>
-        <a href="#managerTaskList/filter?status=Y">
+        <a href="#managerTaskList/filter?field=status&value=Y">
           <div class="row">
             <div class="span1">Yellow</div>
             <div class="span1"><span class="label label-warning"> {{statusCount "Y"}} </span></div>
@@ -41,7 +41,7 @@
     {{/if}}
     {{#if statusCount "G"}}
       <li>
-        <a href="#managerTaskList/filter?status=G">
+        <a href="#managerTaskList/filter?field=status&value=G">
           <div class="row">
             <div class="span1">Green</div>
             <div class="span1"><span class="label label-success"> {{statusCount "G"}} </span></div>
