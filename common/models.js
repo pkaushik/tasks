@@ -41,7 +41,7 @@ Meteor.methods({
       status: options.status,
       name: options.name,
       subtasks: options.subtasks,
-      workerId: options.workerId || "unassigned"
+      workerId: options.workerId
     });
   },
 
