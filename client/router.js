@@ -23,11 +23,11 @@ Router = Backbone.Router.extend({
     ":page/:action/": "actionPage",
     ":page": "basicPage",
     ":page/": "basicPage",
-    "": "startPage",
-    "/": "startPage",
+    "": "start",
+    "/": "start",
   },
   
-  startPage: function() {
+  start: function() {
     // check if user is set....
     var user = Meteor.user();
     if (user && user.profile) {
@@ -38,7 +38,7 @@ Router = Backbone.Router.extend({
       }
     } else {
       console.log("Router: page=login (default)");
-      this.pageExists('login') && Template['login'].render();
+      Router.navigateTo('login');
     }
   },
   

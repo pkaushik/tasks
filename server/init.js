@@ -6,7 +6,7 @@ Meteor.startup(function () {
     var curly = Accounts.createUser({username:'curly',password:'secret',profile:{name:'Curly Howard',workerIds:[moe, larry],role:'manager'}});
      
     console.log('Adding in tasks...');   
-    createTask({
+    Meteor.call("createTask", {
       name:"Frozen Treat Machines",
       subtasks:[
         {order:1,status:"Y",name:"Install gaskets"},
@@ -17,7 +17,7 @@ Meteor.startup(function () {
       managerId: curly
     });
                                                                                                         
-    createTask({
+    Meteor.call("createTask", {
       name:"Open Registers",
       subtasks:[
         {order:1,status:"Y",name:"Turn on all terminals"},
@@ -29,7 +29,7 @@ Meteor.startup(function () {
       workerId:moe
     });
                                                     
-    createTask({
+    Meteor.call("createTask", {
       name:"Freezer Area",
       subtasks:[
         {order:1,status:"Y",name:"Unlock freezer"},
@@ -39,7 +39,7 @@ Meteor.startup(function () {
       managerId:curly
     });
                                                     
-    createTask({
+    Meteor.call("createTask", {
       name:"Fryer Area",
       subtasks:[
         {order:1,status:"Y",name:"Check overnight maintenance status"},
@@ -50,7 +50,7 @@ Meteor.startup(function () {
       workerId:moe
     });
                                                     
-    createTask({
+    Meteor.call("createTask", {
       name:"Open Dining Room",
       subtasks:[
         {order:1,status:"Y",name:"Clean all tables"},

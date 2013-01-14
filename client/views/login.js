@@ -10,7 +10,7 @@ Template.login.events = {
         if (error) {
           Global.alert('error', "Login Failed");
         } else {
-          Router.navigateTo("/");
+          Router.navigateTo("");
         }
       });
     }

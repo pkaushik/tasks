@@ -16,12 +16,13 @@ Tasks.allow({
       // deny if not the manger
       return task.managerId !== userId;
     });
-  }
+  },
+  fetch: ['managerId']
 });
 
 // model helper methods
 var taskAssigned = function(task) {
-   return task.assigned ? task.assigned : 'unassigned'
+   return task.workerId ? task.workerId : 'unassigned'
 }
 
 var taskStatus = function(task) {
@@ -46,7 +47,16 @@ var displayName = function (user) {
 // Meteor.methods
 
 Meteor.methods({
-  createTask : createTask,
+  createTask : function(options) {
+    options = options || {};
+
+    return Tasks.insert({
+      managerId: options.managerId,
+      name: options.name,
+      subtasks: options.subtasks,
+      workerId: options.workerId || ""
+    });
+  },
 
   updateSubtaskStatus : function(taskId, subtaskOrder, newStatus) {
     var task = Tasks.findOne(taskId);
@@ -62,16 +72,5 @@ Meteor.methods({
     Tasks.update(task._id, {$set: {subtasks: subtasks}});
   }
 });
-
-var createTask = function(options) {
-  options = options || {};
-
-  return Tasks.insert({
-    managerId: options.managerId, //this.userId,
-    name: options.name,
-    subtasks: options.subtasks,
-    workerId: options.workerId || ""
-  });
-}
 
 
