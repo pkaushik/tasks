@@ -20,27 +20,13 @@ Tasks.allow({
   fetch: ['managerId']
 });
 
-// model helper methods
-var taskAssigned = function(task) {
-   return task.workerId ? task.workerId : 'unassigned'
-}
-
-var taskStatus = function(task) {
-  if (_.any(task.subtasks, function(subtask) { return subtask.status === "R" })) return "R";
-  if (_.all(task.subtasks, function(subtask) { return subtask.status === "G" })) return "G";
-  return "Y";
-}
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
-// Meteor.users
+// Task Counts
+StatusCounts = new Meteor.Collection("status-counts");
+WorkerCounts = new Meteor.Collection("worker-counts");
 
-var displayName = function (user) {
-  if (user.profile && user.profile.name)
-    return user.profile.name;
-  return "unknown";
-};
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -52,25 +38,34 @@ Meteor.methods({
 
     return Tasks.insert({
       managerId: options.managerId,
+      status: options.status,
       name: options.name,
       subtasks: options.subtasks,
-      workerId: options.workerId || ""
+      workerId: options.workerId || "unassigned"
     });
   },
 
-  updateSubtaskStatus : function(taskId, subtaskOrder, newStatus) {
+  updateSubtaskStatus : function(taskId, subtaskOrder, subtaskStatus) {
     var task = Tasks.findOne(taskId);
+    var idx = parseInt(subtaskOrder) - 1;
     var subtasks = task.subtasks;
-
-    _.each(subtasks, function(subtask) { 
-      if (subtask.order === subtaskOrder) {
-        subtask.status = newStatus;
-        return;
+    //TODO check subtask is valid subset of var allowed = ["Y", "G", "R"];
+    subtasks[idx].status = subtaskStatus;
+    
+    var status = "Y";
+    var g = 0;
+    _.each(subtasks, function(subtask){
+      if (subtask.status === "R") {
+        status = "R"
+      } else if (subtask.status === "G") {
+        g++;
       }
     });
+    
+    if (g === task.subtasks.length) {
+      status = "G";
+    }
 
-    Tasks.update(task._id, {$set: {subtasks: subtasks}});
+    Tasks.update(task._id, {$set: {subtasks: subtasks, status: status}});
   }
 });
-
-

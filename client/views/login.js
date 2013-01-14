@@ -1,4 +1,4 @@
-Template.login.events = {
+Template.login.events({
   'click #login': 
     function (event, template) { 
       var u = template.find('#username').value;
@@ -14,7 +14,7 @@ Template.login.events = {
         }
       });
     }
-}
+});
 
 Template.login.render = function() {
   $('#page').html(Meteor.render(Template.login));

@@ -8,6 +8,7 @@ Meteor.startup(function () {
     console.log('Adding in tasks...');   
     Meteor.call("createTask", {
       name:"Frozen Treat Machines",
+      status: "Y",
       subtasks:[
         {order:1,status:"Y",name:"Install gaskets"},
         {order:2,status:"Y",name:"Install mixer blades"},
@@ -19,6 +20,7 @@ Meteor.startup(function () {
                                                                                                         
     Meteor.call("createTask", {
       name:"Open Registers",
+      status: "Y",
       subtasks:[
         {order:1,status:"Y",name:"Turn on all terminals"},
         {order:2,"status":"Y",name:"Balance out cash trays"},
@@ -31,6 +33,7 @@ Meteor.startup(function () {
                                                     
     Meteor.call("createTask", {
       name:"Freezer Area",
+      status: "Y",
       subtasks:[
         {order:1,status:"Y",name:"Unlock freezer"},
         {order:2,status:"Y",name:"Check daily stock"},
@@ -41,6 +44,7 @@ Meteor.startup(function () {
                                                     
     Meteor.call("createTask", {
       name:"Fryer Area",
+      status: "Y",
       subtasks:[
         {order:1,status:"Y",name:"Check overnight maintenance status"},
         {order:2,status:"Y",name:"Check oil sump connections"},
@@ -52,6 +56,7 @@ Meteor.startup(function () {
                                                     
     Meteor.call("createTask", {
       name:"Open Dining Room",
+      status: "Y",
       subtasks:[
         {order:1,status:"Y",name:"Clean all tables"},
         {order:2,status:"Y",name:"Clean main floor"},

@@ -1,9 +1,17 @@
 <template name="staffTaskListItem">
   <li>
-    <a href="#staffTaskDetails/show?id={{_id}}">
+    <a href="#staffTaskDetails/select?id={{_id}}">
       <div class="row">
-        <div class="span5">{{name}}</div> 
-        <div class="span5">{{taskStatus}}</div>
+        <div class="span3">{{name}}</div> 
+        {{#if isG}}
+          <div class="span1"><span id="G" class="btn btn-success btn-tick update-subtask-status"></span></div>
+        {{/if}}
+        {{#if isY}}
+          <div class="span1"><span id="Y" class="btn btn-warning btn-tick update-subtask-status"></span></div>
+        {{/if}}
+        {{#if isR}}
+          <div class="span1"><span id="R" class="btn btn-danger btn-tick update-subtask-status"></span></div>
+        {{/if}}
       </div>
     </a>
   </li>

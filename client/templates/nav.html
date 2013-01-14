@@ -2,7 +2,13 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        
+        {{#if currentUser}}
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+        {{/if}}
         <a class="brand" href="/" >Task Manager</a>
 
         <div class="nav-collapse">

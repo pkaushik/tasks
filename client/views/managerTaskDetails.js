@@ -1,22 +1,22 @@
-Template.managerTaskDetail.show = function(params) { 
-  Session.set('task_id', params.id); 
-  return this; 
+Template.managerTaskDetails.select = function(options) {
+  Session.set("selected-taskId", options.id);
+  return this;
 }
 
-Template.managerTaskDetail.NAME = function() {
-  return TaskCollection.get(Session.get('task_id')).name;
-}
+// Template.managerTaskDetails.NAME = function() {
+//   return TaskCollection.get(Session.get('task_id')).name;
+// }
+// 
+// Template.managerTaskDetails.SUBTASKS = function() {
+//   return TaskCollection.get(Session.get('task_id')).subtasks;
+// }
+// 
+// Template.managerTaskDetails.ASSIGNED_NAME = function() {
+//   var assigned = TaskCollection.get(Session.get('task_id')).assigned;
+//   return assigned ? StaffCollection.getNameForId(assigned) : "Unassigned";
+// }
 
-Template.managerTaskDetail.SUBTASKS = function() {
-  return TaskCollection.get(Session.get('task_id')).subtasks;
-}
-
-Template.managerTaskDetail.ASSIGNED_NAME = function() {
-  var assigned = TaskCollection.get(Session.get('task_id')).assigned;
-  return assigned ? StaffCollection.getNameForId(assigned) : "Unassigned";
-}
-
-Template.managerTaskDetail.render = function() {   
+Template.managerTaskDetails.render = function() {   
   $('#page').html(Meteor.render(Template.managerTaskDetail));
   return this;
 }

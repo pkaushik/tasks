@@ -1,20 +1,62 @@
 <template name="managerStatusList">
   <legend>{{name}}</legend>
   <ul class="nav nav-tabs nav-stacked">
-      {{#if statusCount "R"}}
-        <li><a href="#managerTaskList/filter?status=R">Red <span class="label label-important"> {{statusCount "R"}} </span></a></li>
-      {{else}}
-        <li><a>Red <span class="label"> 0 </span></a></li>
-      {{/if}}
-      {{#if statusCount "Y"}}
-        <li><a href="#managerTaskList/filter?status=Y">Yellow <span class="label label-warning"> {{statusCount "Y"}} </span></a></li>
-      {{else}}
-        <li><a>Yellow <span class="label"> 0 </span></a></li>
-      {{/if}}
-      {{#if statusCount "G"}}
-        <li><a href="#managerTaskList/filter?status=G">Green <span class="label label-success"> {{statusCount "G"}} </span></a></li>
-      {{else}}
-        <li><a>Green <span class="label"> 0 </span></a></li>
-      {{/if}}
+    {{#if statusCount "R"}}
+      <li>
+        <a href="#managerTaskList/filter?status=R">
+          <div class="row">
+            <div class="span1">Red</div>
+            <div class="span1"><span class="label label-important"> {{statusCount "R"}} </span></div>
+          </div>
+        </a>
+      </li>
+    {{else}}
+      <li>
+        <a>
+          <div class="row">
+            <div class="span1">Red</div>
+            <div class="span1"><span class="label"> 0 </span></div>
+          </div>
+        </a>
+      </li>
+    {{/if}}
+    {{#if statusCount "Y"}}
+      <li>
+        <a href="#managerTaskList/filter?status=Y">
+          <div class="row">
+            <div class="span1">Yellow</div>
+            <div class="span1"><span class="label label-warning"> {{statusCount "Y"}} </span></div>
+          </div>
+        </a>
+      </li>
+    {{else}}
+      <li>
+        <a>
+          <div class="row">
+            <div class="span1">Yellow</div>
+            <div class="span1"><span class="label"> 0 </span></div>
+          </div>
+        </a>
+      </li>
+    {{/if}}
+    {{#if statusCount "G"}}
+      <li>
+        <a href="#managerTaskList/filter?status=G">
+          <div class="row">
+            <div class="span1">Green</div>
+            <div class="span1"><span class="label label-success"> {{statusCount "G"}} </span></div>
+          </div>
+        </a>
+      </li>
+    {{else}}
+      <li>
+        <a>
+          <div class="row">
+            <div class="span1">Green</div>
+            <div class="span1"><span class="label"> 0 </span></div>
+          </div>
+        </a>
+      </li>
+    {{/if}}
   </ul>
 </template>
