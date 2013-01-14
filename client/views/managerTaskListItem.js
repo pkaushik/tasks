@@ -2,7 +2,8 @@ Template.managerTaskListItem.helpers({
   workerName: function(workerId){
     if (workerId === "unassigned")
       return "Unassigned";
-    else
+    else {
       return Meteor.users.findOne({_id: workerId}).profile.name;
+    }
   }
 });

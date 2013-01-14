@@ -1,11 +1,17 @@
-Template.staffTaskList.helpers({
+Template.managerTaskList.helpers({
   tasks: function() {
-    console.log('called!!' + Session.get("filter"));
     if (Session.get('filter')) {
       Session.set('filter', false);
       var field = Session.get('filter-field');
       var val = Session.get('filter-value');
-      return Tasks.find({field: val}).fetch();
+      if (field === "status") {
+        console.log(Tasks.find({status: val}).fetch());
+        return Tasks.find({status: val}).fetch();
+      }
+      if (field === "assignedTo") {
+        return Tasks.find({workerId: val}).fetch();
+      }
+      return Tasks.find().fetch();
     } else {
       return Tasks.find().fetch();
     }

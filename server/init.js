@@ -15,7 +15,8 @@ Meteor.startup(function () {
         {order:3,status:"Y",name:"Fill flavor units"},
         {order:4,status:"Y",name:"Turn on, check freezer unit"}
       ],
-      managerId: curly
+      managerId: curly,
+      workerId:"unassigned"
     });
                                                                                                         
     Meteor.call("createTask", {
@@ -39,7 +40,8 @@ Meteor.startup(function () {
         {order:2,status:"Y",name:"Check daily stock"},
         {order:3,status:"Y",name:"Rotate stock"}
       ],
-      managerId:curly
+      managerId:curly,
+      workerId:"unassigned"
     });
                                                     
     Meteor.call("createTask", {

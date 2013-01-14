@@ -3,13 +3,13 @@
   <ul class="nav nav-tabs nav-stacked">
     {{#each ASSIGNED_TASK_COUNTS}}
       <li>
-        <a href="#managerTaskList/filter?field=workerId&value={{_id}}">{{name}}
+        <a href="#managerTaskList/filter?field=assignedTo&value={{_id}}">{{name}}
           <span class="label label-inverse"> {{COUNT}} </span>
         </a>
       </li>
     {{/each}}
       <li>
-        <a href="#managerTaskList/filter?field=workerId&value=unassigned">Unassigned 
+        <a href="#managerTaskList/filter?field=assignedTo&value=unassigned">Unassigned 
           <span class="label label-inverse"> {{UNASSIGNED_TASK_COUNT}} </span>
         </a>
       </li>
