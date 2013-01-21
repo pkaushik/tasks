@@ -1,5 +1,5 @@
 Meteor.publish("tasks", function() {
-  return Tasks.find({$or: [{managerId: this.userId}, {workerId: this.userId}]});
+  return Tasks.find({$or: [{managerId: this.userId}, {staffId: this.userId}]});
 });
 
 Meteor.publish("directory", function() {
@@ -37,20 +37,20 @@ Meteor.publish("counts-by-status", function(statusName, statusLabel, status) {
 });
 
 
-Meteor.publish("counts-by-worker", function(workerName, workerId) {
+Meteor.publish("counts-by-staff", function(staffName, staffId) {
   var self = this;
   var count = 0;
   var uuid = Meteor.uuid();
   
-  var handle = Tasks.find({workerId: workerId}).observe({
+  var handle = Tasks.find({staffId: staffId}).observe({
     added: function() {
       count++;
-      self.set("worker-counts", uuid, {workerName: workerName, workerId: workerId, count: count});
+      self.set("staff-counts", uuid, {staffName: staffName, staffId: staffId, count: count});
       self.flush();
     },
     removed: function() {
       count--;
-      self.set("worker-counts", uuid, {workerName: workerName, workerId: workerId, count: count});
+      self.set("staff-counts", uuid, {staffName: staffName, staffId: staffId, count: count});
       self.flush();
     }
   });

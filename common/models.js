@@ -24,7 +24,7 @@ Tasks.allow({
 ///////////////////////////////////////////////////////////////////////////////
 // Task Counts
 StatusCounts = new Meteor.Collection("status-counts");
-WorkerCounts = new Meteor.Collection("worker-counts");
+StaffCounts = new Meteor.Collection("staff-counts");
 
 
 
@@ -41,7 +41,7 @@ Meteor.methods({
       status: options.status,
       name: options.name,
       subtasks: options.subtasks,
-      workerId: options.workerId
+      staffId: options.staffId
     });
   },
 

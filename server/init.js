@@ -3,7 +3,7 @@ Meteor.startup(function () {
     console.log('Adding in users...');
     var moe = Accounts.createUser({username:'moe',password:'secret',profile:{name:'Moe Howard',role:'worker'}});
     var larry = Accounts.createUser({username:'larry',password:'secret',profile:{name:'Larry Fine',role:'worker'}});
-    var curly = Accounts.createUser({username:'curly',password:'secret',profile:{name:'Curly Howard',workerIds:[moe, larry],role:'manager'}});
+    var curly = Accounts.createUser({username:'curly',password:'secret',profile:{name:'Curly Howard',staffIds:[moe, larry],role:'manager'}});
      
     console.log('Adding in tasks...');   
     Meteor.call("createTask", {
@@ -16,7 +16,7 @@ Meteor.startup(function () {
         {order:4,status:"Y",name:"Turn on, check freezer unit"}
       ],
       managerId: curly,
-      workerId:"unassigned"
+      staffId:"unassigned"
     });
                                                                                                         
     Meteor.call("createTask", {
@@ -29,7 +29,7 @@ Meteor.startup(function () {
         {order:4,"status":"Y",name:"Check register promo placards"}
       ],
       managerId:curly,
-      workerId:moe
+      staffId:moe
     });
                                                     
     Meteor.call("createTask", {
@@ -41,7 +41,7 @@ Meteor.startup(function () {
         {order:3,status:"Y",name:"Rotate stock"}
       ],
       managerId:curly,
-      workerId:"unassigned"
+      staffId:"unassigned"
     });
                                                     
     Meteor.call("createTask", {
@@ -53,7 +53,7 @@ Meteor.startup(function () {
         {order:3,status:"Y",name:"Turn on, set temperature"}
       ],
       managerId:curly,
-      workerId:moe
+      staffId:moe
     });
                                                     
     Meteor.call("createTask", {
@@ -66,7 +66,7 @@ Meteor.startup(function () {
         {order:4,status:"Y",name:"Check / replenish trays"}
       ],
       managerId:curly,
-      workerId:larry
+      staffId:larry
     });    
   }
 });

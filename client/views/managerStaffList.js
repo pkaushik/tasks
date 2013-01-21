@@ -3,7 +3,7 @@ Template.managerStaffList.helpers({
     return Meteor.user().profile.name;
   },
   counts: function() {
-    return WorkerCounts.find().fetch();
+    return StaffCounts.find().fetch();
   }
 });
 
