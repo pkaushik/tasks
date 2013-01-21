@@ -17,9 +17,9 @@ Meteor.startup(function() {
 
     _.each(Meteor.users.find().fetch(), function(userObj) {
       Meteor.autosubscribe(function () {
-        Meteor.subscribe("counts-by-worker", userObj.username, userObj._id);
+        Meteor.subscribe("counts-by-worker", userObj.profile.name, userObj._id);
       });
-      Meteor.subscribe("counts-by-worker", "unassigned", "unassigned");
+      Meteor.subscribe("counts-by-worker", "Unassigned", "unassigned");
     });
     
   });

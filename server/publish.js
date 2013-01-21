@@ -37,20 +37,20 @@ Meteor.publish("counts-by-status", function(status) {
 });
 
 
-Meteor.publish("counts-by-worker", function(username, userId) {
+Meteor.publish("counts-by-worker", function(workerName, workerId) {
   var self = this;
   var count = 0;
   var uuid = Meteor.uuid();
   
-  var handle = Tasks.find({workerId: userId}).observe({
+  var handle = Tasks.find({workerId: workerId}).observe({
     added: function() {
       count++;
-      self.set("worker-counts", uuid, {username: username, userId: userId, count: count});
+      self.set("worker-counts", uuid, {workerName: workerName, workerId: workerId, count: count});
       self.flush();
     },
     removed: function() {
       count--;
-      self.set("worker-counts", uuid, {username: username, userId: userId, count: count});
+      self.set("worker-counts", uuid, {workerName: workerName, workerId: workerId, count: count});
       self.flush();
     }
   });

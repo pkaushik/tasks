@@ -1,5 +1,6 @@
 Template.managerTaskListItem.helpers({
   workerName: function(workerId){
+    console.log("workerName called with: " + workerId)
     if (workerId === "unassigned")
       return "Unassigned";
     else {

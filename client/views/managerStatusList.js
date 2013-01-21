@@ -3,11 +3,7 @@ Template.managerStatusList.helpers({
     return Meteor.user().profile.name;
   },
   statusCount: function(status) {
-    var sc = StatusCounts.findOne({status: status});
-    if (sc) 
-      return sc.count;
-    else
-      return 0;
+    return Tasks.find({status: status}).fetch().length;
   }
 });
 

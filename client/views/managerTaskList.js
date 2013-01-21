@@ -5,7 +5,6 @@ Template.managerTaskList.helpers({
       var field = Session.get('filter-field');
       var val = Session.get('filter-value');
       if (field === "status") {
-        console.log(Tasks.find({status: val}).fetch());
         return Tasks.find({status: val}).fetch();
       }
       if (field === "assignedTo") {
@@ -18,7 +17,7 @@ Template.managerTaskList.helpers({
   },
 });
 
-Template.managerTaskList.render = function() {   
+Template.managerTaskList.render = function() {
   $('#page').html(Meteor.render(Template.managerTaskList));
   return this;
 }
