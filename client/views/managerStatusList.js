@@ -2,8 +2,8 @@ Template.managerStatusList.helpers({
   name: function() {
     return Meteor.user().profile.name;
   },
-  statusCount: function(status) {
-    return Tasks.find({status: status}).fetch().length;
+  counts: function() {
+    return StatusCounts.find().fetch();
   }
 });
 

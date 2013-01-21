@@ -7,7 +7,7 @@ Meteor.publish("directory", function() {
 });
 
 
-Meteor.publish("counts-by-status", function(status) {
+Meteor.publish("counts-by-status", function(statusName, statusLabel, status) {
   var self = this;
   var count = 0;
   var uuid = Meteor.uuid();
@@ -15,12 +15,12 @@ Meteor.publish("counts-by-status", function(status) {
   var handle = Tasks.find({status: status}).observe({
     added: function() {
       count++;
-      self.set("status-counts", uuid, {status: status, count: count});
+      self.set("status-counts", uuid, {status: status, statusName: statusName, statusLabel: statusLabel, count: count});
       self.flush();
     },
     removed: function() {
       count--;
-      self.set("status-counts", uuid, {status: status, count: count});
+      self.set("status-counts", uuid, {status: status, statusName: statusName, statusLabel: statusLabel, count: count});
       self.flush();
     }
   });

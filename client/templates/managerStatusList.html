@@ -1,62 +1,19 @@
 <template name="managerStatusList">
   <legend>{{name}}</legend>
   <ul class="nav nav-tabs nav-stacked">
-    {{#if statusCount "R"}}
+    {{#each counts}}
       <li>
-        <a href="#managerTaskList/filter?field=status&value=R">
-          <div class="row">
-            <div class="span1">Red</div>
-            <div class="span1"><span class="label label-important"> {{statusCount "R"}} </span></div>
-          </div>
-        </a>
+        {{#if count}}
+          <a href="#managerTaskList/filter?field=status&value={{status}}">
+        {{else}}
+          <a>
+        {{/if}}
+            <div class="row">
+              <div class="span1">{{statusName}}</div>
+              <div class="span1"><span class="label {{#if count}}{{statusLabel}}{{/if}}"> {{count}} </span></div>
+            </div>
+          </a>
       </li>
-    {{else}}
-      <li>
-        <a>
-          <div class="row">
-            <div class="span1">Red</div>
-            <div class="span1"><span class="label"> 0 </span></div>
-          </div>
-        </a>
-      </li>
-    {{/if}}
-    {{#if statusCount "Y"}}
-      <li>
-        <a href="#managerTaskList/filter?field=status&value=Y">
-          <div class="row">
-            <div class="span1">Yellow</div>
-            <div class="span1"><span class="label label-warning"> {{statusCount "Y"}} </span></div>
-          </div>
-        </a>
-      </li>
-    {{else}}
-      <li>
-        <a>
-          <div class="row">
-            <div class="span1">Yellow</div>
-            <div class="span1"><span class="label"> 0 </span></div>
-          </div>
-        </a>
-      </li>
-    {{/if}}
-    {{#if statusCount "G"}}
-      <li>
-        <a href="#managerTaskList/filter?field=status&value=G">
-          <div class="row">
-            <div class="span1">Green</div>
-            <div class="span1"><span class="label label-success"> {{statusCount "G"}} </span></div>
-          </div>
-        </a>
-      </li>
-    {{else}}
-      <li>
-        <a>
-          <div class="row">
-            <div class="span1">Green</div>
-            <div class="span1"><span class="label"> 0 </span></div>
-          </div>
-        </a>
-      </li>
-    {{/if}}
+    {{/each}}
   </ul>
 </template>
