@@ -18,13 +18,28 @@ Meteor.subscribe("directory", function() {
     });
     Meteor.subscribe("counts-by-staff", "Unassigned", "unassigned");
   });
-  
 });
+
+
+function start(context, page) {
+  var user = Meteor.user();
+  console.log('1')
+  if (user && user.profile) {
+    console.log('2')
+    if (user.profile.role === "manager") {
+      console.log('3')
+      // go to Manager Menu
+    } else {
+      // go to staffTaskList
+    }
+  } 
+}
 
 Meteor.pages({
-  '/'                 : { to: 'login' }
+  '/'                 : { to: 'login', before: [start] },
+  '/managerMenu'      : { to: 'managerMenu' },
+  '/staffTaskList'    : { to: 'staffTaskList' }
 });
-
 
 Handlebars.registerHelper("navClassFor", function (name, options) {
   return Session.equals("nav", name) ? "active" : "";
