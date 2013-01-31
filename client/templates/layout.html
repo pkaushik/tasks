@@ -1,31 +1,5 @@
 <template name="layout">
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      {{#if currentUser}}
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-      {{/if}}
-      <a href="{{loginPage}}" class="brand">Tasks</a>
-      <div class="nav-collapse">
-        <ul class="nav">
-          <li class="{{navClassFor 'profile'}}">
-            <a href="{{loginPage}}">
-              Posts
-            </a>
-          </li>
-          <li class="{{navClassFor 'settings'}}">
-            <a href="{{loginPage}}">
-              Secret
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
+  {{> nav}}
   <div class="container">
     {{{yield}}}
   </div>
