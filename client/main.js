@@ -22,11 +22,14 @@ Meteor.subscribe("directory", function() {
 });
 
 Meteor.pages({
-  '/'                 : { to: 'login' },
-  '/login'            : { to: 'login' }
+  '/'                 : { to: 'login' }
 });
 
 
+Handlebars.registerHelper("navClassFor", function (name, options) {
+  return Session.equals("nav", name) ? "active" : "";
+});
+  
 
 Global = {   
   alert: function(type, message) {

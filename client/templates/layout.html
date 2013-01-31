@@ -12,12 +12,12 @@
       <div class="nav-collapse">
         <ul class="nav">
           <li class="{{navClassFor 'profile'}}">
-            <a href="{{profilePage}}">
+            <a href="{{loginPage}}">
               Posts
             </a>
           </li>
           <li class="{{navClassFor 'settings'}}">
-            <a href="{{settingsPage}}">
+            <a href="{{loginPage}}">
               Secret
             </a>
           </li>
@@ -27,6 +27,6 @@
   </div>
 
   <div class="container">
-    {{yield}}
+    {{{yield}}}
   </div>
 </template>
