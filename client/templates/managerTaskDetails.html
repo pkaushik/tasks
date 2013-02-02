@@ -1,8 +1,6 @@
 <template name="managerTaskDetails">
   {{#with task}}
     <legend>{{name}}</legend>
-    
-    
     <ul class="nav nav-pills nav-stacked">
       <li class="active">
         <a>
@@ -25,6 +23,6 @@
       {{/each}}
     </ul>
     
-    <a style="align:right" class="btn btn-inverse">{{displayName staffId}}</a>
+    <a href="/tasks/{{_id}}/assign"  class="btn btn-primary">{{displayName staffId}}</a> 
   {{/with}}
 </template> 

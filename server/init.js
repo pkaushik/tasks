@@ -3,7 +3,7 @@ Meteor.startup(function () {
     console.log('Adding in users...');
     var moe = Accounts.createUser({username:'moe',password:'secret',profile:{name:'Moe Howard',manager:false}});
     var larry = Accounts.createUser({username:'larry',password:'secret',profile:{name:'Larry Fine',manager:false}});
-    var curly = Accounts.createUser({username:'curly',password:'secret',profile:{name:'Curly Howard',staffIds:[moe, larry],manager:true}});
+    var curly = Accounts.createUser({username:'curly',password:'secret',profile:{name:'Curly Howard',staffIds:[{staffId: moe}, {staffId: larry}],manager:true}});
      
     console.log('Adding in tasks...');   
     Meteor.call("createTask", {

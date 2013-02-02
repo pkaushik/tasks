@@ -24,8 +24,9 @@ Meteor.pages({
   '/' : { to: 'login', as: 'login', before: [redirectWhenLoggedIn] },
   '/tasks' : { to: 'taskIndex', nav: 'tasks' },
   '/tasks/:_id' : { to: 'taskDetails', before: [setTask], nav: 'tasks' },
-  '/profile' : { to: 'profile', nav : 'profile' },
-  '*' : { to: 'login' }
+  '/tasks/:_id/assign' : { to: 'taskAssign', before: [setTask], nav: 'tasks' },
+  '/profile' : { to: 'profile', nav: 'profile', before: [authorize] },
+  '*' : 'login'
 });
 
 
@@ -35,12 +36,22 @@ function setTask(context) {
   Session.set("taskId", context.params._id);
 }
 
+function newTask(context) {
+  Session.set("taskId", null);
+}
+
 function redirectWhenLoggedIn(context) {
   var user = Meteor.user();
   if (user && !Meteor.loggingIn()) {
       context.redirect(Meteor.taskIndexPath());
   } 
 }
+
+function authorize(context) {
+    if (!Session.get("authorized")) {
+      context.redirect('/login');
+    }
+  }
 
 
 // Template helpers
@@ -76,6 +87,4 @@ Handlebars.registerHelper('btn', function(status) {
   return btns[status] ? btns[status] : '';
 });
 
-Handlebars.registerHelper('tick', function(color) {
-  return this.status === color ? "✓" : "";
-});
+
