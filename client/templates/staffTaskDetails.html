@@ -1,20 +1,24 @@
 <template name="staffTaskDetails">
-  {{#with task}}
-    <legend>{{name}}</legend>
-    <ul class="nav nav-pills nav-stacked">
-      <li class="active">
-        <a>
-          <div class="row">
-            <div class="span4">Subtask</div>  
-            <div class="span1"></div>
-            <div class="span1"></div>
-            <div class="span1"></div>
-          </div>
-        </a>
-      </li>
-      {{#each subtasks}}
-        {{> staffTaskDetailsSubtask}}
-      {{/each}}
-    </ul>
-  {{/with}}
+  {{#if currentUser}}
+    {{#with task}}
+      <legend>{{name}}</legend>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active">
+          <a>
+            <div class="row">
+              <div class="span4">Subtask</div>  
+              <div class="span1"></div>
+              <div class="span1"></div>
+              <div class="span1"></div>
+            </div>
+          </a>
+        </li>
+        {{#each subtasks}}
+          {{> staffTaskDetailsSubtask}}
+        {{/each}}
+      </ul>
+    {{/with}}
+  {{else}}
+    {{> loggedOut}}
+  {{/if}}
 </template>

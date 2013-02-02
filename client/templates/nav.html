@@ -14,11 +14,11 @@
         <div class="nav-collapse">
           <ul class="nav">
             {{#if currentUser}}
-              <li>
-                <a>Options</a>
+              <li class="{{navClassFor 'tasks'}}">
+                <a href="{{staffTaskListPath}}">Tasks</a>
               </li>
-              <li>
-                <a>Settings</a>
+              <li class="{{navClassFor 'profile'}}">
+                <a href="{{profilePath}}">Profile</a>
               </li>
               <li>
                 <a id='logout'>Logout</a>

@@ -15,8 +15,3 @@ Template.managerTaskDetails.select = function(options) {
 //   var assigned = TaskCollection.get(Session.get('task_id')).assigned;
 //   return assigned ? StaffCollection.getNameForId(assigned) : "Unassigned";
 // }
-
-Template.managerTaskDetails.render = function() {   
-  $('#page').html(Meteor.render(Template.managerTaskDetail));
-  return this;
-}

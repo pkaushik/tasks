@@ -17,11 +17,6 @@ Template.managerTaskList.helpers({
   },
 });
 
-Template.managerTaskList.render = function() {
-  $('#page').html(Meteor.render(Template.managerTaskList));
-  return this;
-}
-
 Template.managerTaskList.filter = function(options) { 
   Session.set('filter-field', options.field); 
   Session.set('filter-value', options.value); 

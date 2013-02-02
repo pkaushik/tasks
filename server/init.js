@@ -1,9 +1,9 @@
 Meteor.startup(function () {
   if(Meteor.users.find().count() === 0) {
     console.log('Adding in users...');
-    var moe = Accounts.createUser({username:'moe',password:'secret',profile:{name:'Moe Howard',role:'worker'}});
-    var larry = Accounts.createUser({username:'larry',password:'secret',profile:{name:'Larry Fine',role:'worker'}});
-    var curly = Accounts.createUser({username:'curly',password:'secret',profile:{name:'Curly Howard',staffIds:[moe, larry],role:'manager'}});
+    var moe = Accounts.createUser({username:'moe',password:'secret',profile:{name:'Moe Howard',manager:false}});
+    var larry = Accounts.createUser({username:'larry',password:'secret',profile:{name:'Larry Fine',manager:false}});
+    var curly = Accounts.createUser({username:'curly',password:'secret',profile:{name:'Curly Howard',staffIds:[moe, larry],manager:true}});
      
     console.log('Adding in tasks...');   
     Meteor.call("createTask", {

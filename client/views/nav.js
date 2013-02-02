@@ -4,8 +4,6 @@ Template.nav.events = {
       Meteor.logout(function(error) {
         if (error) {
           Global.alert('error', "Logout Failed");
-        } else {
-          Router.navigateTo('login');
         }
       });
     }

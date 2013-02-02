@@ -11,8 +11,8 @@
     "packages": {
       "mini-pages": {
         "git": "https://github.com/cmather/meteor-mini-pages.git",
-        "tag": "v0.1.4",
-        "commit": "0368f57e6cfa853fdba4214ba56d8b2234adef07"
+        "tag": "v0.2.3",
+        "commit": "dcf77ccca21508a1eb8bec3943bf610b2b8077b5"
       },
       "page-js": {
         "git": "https://github.com/tmeasday/meteor-page-js.git",

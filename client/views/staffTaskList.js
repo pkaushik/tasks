@@ -1,10 +1,10 @@
 Template.staffTaskList.helpers({
   tasks: function() {
-    return Tasks.find().fetch();
+    return Tasks.find();
   }
 });
 
-Template.staffTaskList.render = function() {   
-  $('#page').html(Meteor.render(Template.staffTaskList));
-  return this;
+// to make the URL match
+Template.staffTaskList.rendered = function() {
+  history.pushState({}, '', '/tasks')
 }

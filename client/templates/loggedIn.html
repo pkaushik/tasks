@@ -1,0 +1,11 @@
+<template name="loggedIn">
+  {{#if loggingIn}}
+    <a>Logging in...</a>
+  {{else}}
+    {{#if currentUser.profile.manager}}
+      {{> managerMenu}}
+    {{else}}
+      {{> staffTaskList}}
+    {{/if}}
+  {{/if}}
+</template>

@@ -9,13 +9,7 @@ Template.login.events({
       Meteor.loginWithPassword(u, p, function(error) {
         if (error) {
           Global.alert('error', "Login Failed");
-        } else {
-          Router.navigateTo("");
         }
       });
     }
 });
-
-Template.login.render = function() {
-  $('#page').html(Meteor.render(Template.login));
-}

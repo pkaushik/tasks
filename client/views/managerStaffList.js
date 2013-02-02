@@ -6,7 +6,3 @@ Template.managerStaffList.helpers({
     return StaffCounts.find().fetch();
   }
 });
-
-Template.managerStaffList.render = function() {   
-  $('#page').html(Meteor.render(Template.managerStaffList));
-}
