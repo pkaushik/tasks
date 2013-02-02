@@ -1,9 +1,3 @@
-Template.staffSubtaskListItem.helpers({
-  tick: function(color) {
-    return this.status === color ? "✓" : "";
-  }
-});
-
 Template.staffSubtaskListItem.events({
   'click .update-subtask-status':
     function(event, template) { 

@@ -8,7 +8,7 @@ Template.login.events({
       
       Meteor.loginWithPassword(u, p, function(error) {
         if (error) {
-          Global.alert('error', "Login Failed");
+          alertMessage('error', "Login Failed");
         }
       });
     }

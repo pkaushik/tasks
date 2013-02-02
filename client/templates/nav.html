@@ -14,11 +14,6 @@
         <div class="nav-collapse">
           <ul class="nav">
             {{#if currentUser}}
-              {{#if currentUser.profile.manager}}
-              <li class="{{navClassFor 'menu'}}">
-                <a href="/menu">Menu</a>
-              </li>
-              {{/if}}
               <li class="{{navClassFor 'tasks'}}">
                 <a href="/tasks">Tasks</a>
               </li>

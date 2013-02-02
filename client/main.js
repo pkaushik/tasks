@@ -3,6 +3,20 @@
 Meteor.subscribe("tasks");
 Meteor.subscribe("directory");
 
+// helper
+
+function alertMessage(type, message) {
+  className = 'alert';
+  if(type == 'warning' || type == 'info' || type == 'error') {
+    className += ' alert-'+type
+  }
+  if(type == 'warning') {
+    message = 'Warning: '+ message;
+  }
+  alert = $('<div class="' + className + '">  <button class="close" data-dismiss="alert">×</button>  ' + message + '</div>').alert();
+  $('.page').prepend(alert);
+}
+
 
 // Paths
 
@@ -10,6 +24,7 @@ Meteor.pages({
   '/' : { to: 'login', as: 'login', before: [redirectWhenLoggedIn] },
   '/tasks' : { to: 'taskIndex', nav: 'tasks' },
   '/tasks/:_id' : { to: 'taskDetails', before: [setTask], nav: 'tasks' },
+  '/profile' : { to: 'profile', nav : 'profile' },
   '*' : { to: 'login' }
 });
 
@@ -61,22 +76,6 @@ Handlebars.registerHelper('btn', function(status) {
   return btns[status] ? btns[status] : '';
 });
 
-
-
-
-
-  
-
-Global = {   
-  alert: function(type, message) {
-    className = 'alert';
-    if(type == 'warning' || type == 'info' || type == 'error') {
-      className += ' alert-'+type
-    }
-    if(type == 'warning') {
-      message = 'Warning: '+message;
-    }
-    alert = $('<div class="'+className+'">  <button class="close" data-dismiss="alert">×</button>  '+message+'</div>').alert();
-    $('#page').prepend(alert);
-  }
-}
+Handlebars.registerHelper('tick', function(color) {
+  return this.status === color ? "✓" : "";
+});
