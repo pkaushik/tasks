@@ -1,3 +1,5 @@
+// Subscriptions
+
 Meteor.subscribe("tasks", function() {
   _.each([
     {status: "R", statusLabel: "label-important", statusName: "Red"}, 
@@ -20,25 +22,44 @@ Meteor.subscribe("directory", function() {
 });
 
 
+// Paths
+
 Meteor.pages({
-  '/' : { to: 'login' },
-  '/tasks' : { to: 'staffTaskList' },
-  '/tasks/:_id' : { to: 'staffTaskDetails', before: [setTask] }
+  '/' : { to: 'login', as: 'login', before: [redirectWhenLoggedIn] },
+  '/tasks' : { to: 'staffTaskList', nav: 'tasks' },
+  '/tasks/:_id' : { to: 'staffTaskDetails', before: [setTask], nav: 'tasks' },
+  '*' : { to: 'login' }
 });
 
 
+// Path helpers
 
 function setTask(context) {
   Session.set("taskId", context.params._id);
 }
 
-Handlebars.registerHelper('navClassFor', function (name, options) {
+function redirectWhenLoggedIn(context) {
+  var user = Meteor.user();
+  if (user && !Meteor.loggingIn()) {
+    if (user.profile.manager) {
+      context.redirect(Meteor.managerMenuPath());
+    } else {
+      context.redirect(Meteor.staffTaskListPath());
+    }
+  } 
+}
+
+
+// Template helpers
+
+Handlebars.registerHelper('navClassFor', function (name) {
   return Session.equals('nav', name) ? 'active' : '';
 });
 
-Handlebars.registerHelper('task', function (options) {
+Handlebars.registerHelper('task', function () {
   return Tasks.findOne(Session.get('taskId'));
 });
+
 
 
 

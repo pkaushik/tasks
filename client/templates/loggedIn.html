@@ -3,9 +3,9 @@
     <a>Logging in...</a>
   {{else}}
     {{#if currentUser.profile.manager}}
-      {{> managerMenu}}
+      {{navTo managerMenuPath}}
     {{else}}
-      {{> staffTaskList}}
+      {{navTo '/tasks'}}
     {{/if}}
   {{/if}}
 </template>
