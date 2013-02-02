@@ -1,0 +1,7 @@
+<template name="taskDetails">
+  {{#if currentUser.profile.manager}}
+    {{> managerTaskDetails}}
+  {{else}}
+    {{> staffTaskDetails}}
+  {{/if}}
+</template>

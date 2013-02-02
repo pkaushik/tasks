@@ -1,16 +1,16 @@
 <template name="staffTaskListItem">
   <li>
-    <a href="{{staffTaskDetailsPath}}">
+    <a href="/tasks/{{_id}}">
       <div class="row">
         <div class="span3">{{name}}</div> 
         {{#if isColor "G"}}
-          <div class="span1"><span id="G" class="btn btn-success btn-tick"></span></div>
+          <div class="span1"><span id="G" class="btn {{btn 'G'}} btn-tick"></span></div>
         {{/if}}
         {{#if isColor "Y"}}
-          <div class="span1"><span id="Y" class="btn btn-warning btn-tick"></span></div>
+          <div class="span1"><span id="Y" class="btn {{btn 'Y'}} btn-tick"></span></div>
         {{/if}}
         {{#if isColor "R"}}
-          <div class="span1"><span id="R" class="btn btn-danger btn-tick"></span></div>
+          <div class="span1"><span id="R" class="btn {{btn 'R'}} btn-tick"></span></div>
         {{/if}}
       </div>
     </a>

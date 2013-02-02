@@ -1,24 +1,30 @@
 <template name="managerTaskDetails">
-  <legend>{{name}} <span class="label label-inverse">{{ASSIGNED_NAME}}</span></legend>
-  <ul class="nav nav-pills nav-stacked">
-    <li class="active">
-      <a>
-        <div class="row">
-          <div class="span4">Subtask</div>  
-          <div class="span4">Status</div>
-        </div>
-      </a>
-    </li>
+  {{#with task}}
+    <legend>{{name}}</legend>
     
-    {{#each SUBTASKS}}
-      <li>
+    
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active">
         <a>
           <div class="row">
-            <div class="span4">{{name}}</div> 
-            <div class="span4">{{status}}</div>
+            <div class="span4">Subtask</div>  
+            <div class="span4">Status</div>
           </div>
         </a>
       </li>
-    {{/each}}
-  </ul>
+    
+      {{#each subtasks}}
+        <li>
+          <a>
+            <div class="row">
+              <div class="span4">{{name}}</div> 
+              <div class="span1"><span class="btn {{btn status}} btn-tick"></span></div>
+            </div>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+    
+    <a style="align:right" class="btn btn-inverse">{{displayName staffId}}</a>
+  {{/with}}
 </template> 

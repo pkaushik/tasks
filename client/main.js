@@ -1,33 +1,15 @@
 // Subscriptions
 
-Meteor.subscribe("tasks", function() {
-  _.each([
-    {status: "R", statusLabel: "label-important", statusName: "Red"}, 
-    {status: "Y", statusLabel: "label-warning", statusName: "Yellow"}, 
-    {status: "G", statusLabel: "label-success", statusName: "Green"}
-  ], function(statusObj) {
-    Meteor.autosubscribe(function () {
-      Meteor.subscribe("counts-by-status", statusObj.statusName, statusObj.statusLabel, statusObj.status);
-    });
-  });
-});
-
-Meteor.subscribe("directory", function() {
-  _.each(Meteor.users.find().fetch(), function(userObj) {
-    Meteor.autosubscribe(function () {
-      Meteor.subscribe("counts-by-staff", userObj.profile.name, userObj._id);
-    });
-    Meteor.subscribe("counts-by-staff", "Unassigned", "unassigned");
-  });
-});
+Meteor.subscribe("tasks");
+Meteor.subscribe("directory");
 
 
 // Paths
 
 Meteor.pages({
   '/' : { to: 'login', as: 'login', before: [redirectWhenLoggedIn] },
-  '/tasks' : { to: 'staffTaskList', nav: 'tasks' },
-  '/tasks/:_id' : { to: 'staffTaskDetails', before: [setTask], nav: 'tasks' },
+  '/tasks' : { to: 'taskIndex', nav: 'tasks' },
+  '/tasks/:_id' : { to: 'taskDetails', before: [setTask], nav: 'tasks' },
   '*' : { to: 'login' }
 });
 
@@ -41,11 +23,7 @@ function setTask(context) {
 function redirectWhenLoggedIn(context) {
   var user = Meteor.user();
   if (user && !Meteor.loggingIn()) {
-    if (user.profile.manager) {
-      context.redirect(Meteor.managerMenuPath());
-    } else {
-      context.redirect(Meteor.staffTaskListPath());
-    }
+      context.redirect(Meteor.taskIndexPath());
   } 
 }
 
@@ -58,6 +36,29 @@ Handlebars.registerHelper('navClassFor', function (name) {
 
 Handlebars.registerHelper('task', function () {
   return Tasks.findOne(Session.get('taskId'));
+});
+
+Handlebars.registerHelper('tasks', function () {
+  return Tasks.find();
+});
+
+Handlebars.registerHelper('displayName', function(id) {
+  if (!id) {
+    return Meteor.user().profile.name;
+  } else if (id === "unassigned") {
+    return "Unassigned";
+  } else {
+    return Meteor.users.findOne({_id: id}).profile.name;
+  }
+});
+
+Handlebars.registerHelper('btn', function(status) {
+  var btns = {
+    'R' : 'btn-danger',
+    'Y' : 'btn-warning',
+    'G' : 'btn-success'
+  }
+  return btns[status] ? btns[status] : '';
 });
 
 

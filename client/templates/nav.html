@@ -16,14 +16,14 @@
             {{#if currentUser}}
               {{#if currentUser.profile.manager}}
               <li class="{{navClassFor 'menu'}}">
-                <a href="{{staffTaskListPath}}">Menu</a>
+                <a href="/menu">Menu</a>
               </li>
               {{/if}}
               <li class="{{navClassFor 'tasks'}}">
-                <a href="{{staffTaskListPath}}">Tasks</a>
+                <a href="/tasks">Tasks</a>
               </li>
               <li class="{{navClassFor 'profile'}}">
-                <a href="{{profilePath}}">Profile</a>
+                <a href="/profile">Profile</a>
               </li>
               <li>
                 <a id='logout'>Logout</a>

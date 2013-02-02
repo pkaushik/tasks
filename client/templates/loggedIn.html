@@ -3,7 +3,7 @@
     <a>Logging in...</a>
   {{else}}
     {{#if currentUser.profile.manager}}
-      {{navTo managerMenuPath}}
+      {{navTo '/menu'}}
     {{else}}
       {{navTo '/tasks'}}
     {{/if}}
