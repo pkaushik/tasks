@@ -4,12 +4,14 @@ Template.taskAssign.helpers({
   }
 });
 
-Template.staffSubtaskListItem.events({
+Template.taskAssign.events({
   'click .update-task-assigned':
     function(event, template) { 
-      Meteor.call("updateTaskAssigned", Session.get('taskId'), event.currentTarget.id, function(error) {
+      var taskId = Session.get('taskId');
+      Meteor.call("updateTaskAssigned", taskId, event.currentTarget.id, function(error) {
+        Meteor.go('/tasks/' + taskId);
         if (error) {
-          Global.alert('error', "Update Failed");
+          alertMessage('error', "Update Failed");
         }
       });
     }

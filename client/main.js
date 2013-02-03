@@ -48,10 +48,10 @@ function redirectWhenLoggedIn(context) {
 }
 
 function authorize(context) {
-    if (!Session.get("authorized")) {
-      context.redirect('/login');
-    }
+  if (!Meteor.user()) {
+    context.redirect('/login');
   }
+}
 
 
 // Template helpers

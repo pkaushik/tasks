@@ -19,6 +19,14 @@
           </a>
         </li>
       {{/each}}
+        <li>
+          <a>
+            <div class="row">
+              <div class="span4">Unassigned</div> 
+              <div class="span1"><span id="unassigned" class="btn btn-tick update-task-assigned">{{tick task "unassigned"}}</span></div>
+            </div>
+          </a>
+        </li>
     </ul>
   {{/with}}
 </template>

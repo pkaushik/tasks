@@ -21,13 +21,6 @@ Tasks.allow({
 });
 
 
-///////////////////////////////////////////////////////////////////////////////
-// Task Counts
-StatusCounts = new Meteor.Collection("status-counts");
-StaffCounts = new Meteor.Collection("staff-counts");
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Meteor.methods
@@ -67,5 +60,12 @@ Meteor.methods({
     }
 
     Tasks.update(task._id, {$set: {subtasks: subtasks, status: status}});
+  },
+  
+  updateTaskAssigned : function(taskId, staffId) {
+    var task = Tasks.findOne(taskId);
+    var staff = Meteor.users.find(staffId);
+    if (!task || !staff) return;
+    Tasks.update(task._id, {$set: {staffId: staffId}});
   }
 });

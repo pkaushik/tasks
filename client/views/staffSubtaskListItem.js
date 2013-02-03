@@ -9,7 +9,7 @@ Template.staffSubtaskListItem.events({
     function(event, template) { 
       Meteor.call("updateSubtaskStatus", Session.get('taskId'), this.order, event.currentTarget.id, function(error) {
         if (error) {
-          Global.alert('error', "Update Failed");
+          alertMessage('error', "Update Failed");
         }
       });
     }
