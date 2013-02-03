@@ -4,7 +4,7 @@
     <ul class="nav nav-pills nav-stacked">
       <li class="active">
         <a>
-          <div class="row">
+          <div class="row-fluid">
             <div class="span4">Assigned to</div>  
           </div>
         </a>
@@ -12,7 +12,7 @@
       {{#each currentUser.profile.staffIds}}
         <li id="{{staffId}}" class="update-task-assigned">
           <a>
-            <div class="row">
+            <div class="row-fluid">
               <div class="span4">{{displayName staffId}}</div> 
               <div class="span1"><span class="btn btn-tick disabled">{{tick task staffId}}</span></div>
             </div>
@@ -21,7 +21,7 @@
       {{/each}}
         <li id="unassigned" class="update-task-assigned">
           <a>
-            <div class="row">
+            <div class="row-fluid">
               <div class="span4">Unassigned</div> 
               <div class="span1"><span class="btn btn-tick">{{tick task "unassigned"}}</span></div>
             </div>

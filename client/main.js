@@ -79,7 +79,7 @@ Handlebars.registerHelper('task', function () {
 });
 
 Handlebars.registerHelper('tasks', function () {
-  return Tasks.find({}, {sort: {staffId: 1}});
+  return Tasks.find({}, {sort: {staffId: 1, name: 1}});
 });
 
 Handlebars.registerHelper('displayName', function(id) {
