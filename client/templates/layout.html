@@ -1,0 +1,9 @@
+<template name="layout">
+  {{> nav}}
+  {{#if showModal}}
+    {{> modal}}
+  {{/if}}
+  <div class="container page">
+    {{{yield}}}
+  </div>
+</template>

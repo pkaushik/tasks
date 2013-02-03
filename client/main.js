@@ -1,45 +1,107 @@
-Meteor.startup(function() {
-  // tasks - get all tasks associated
-  Meteor.subscribe("tasks");
-  
-  // users  
-  Meteor.subscribe("directory", function() {
-    // profile is populated after login
-    Router = new Router();
-    Backbone.history.start();
-    
-    // counts 
-    _.each([
-      {status: "R", statusLabel: "label-important", statusName: "Red"}, 
-      {status: "Y", statusLabel: "label-warning", statusName: "Yellow"}, 
-      {status: "G", statusLabel: "label-success", statusName: "Green"}
-    ], function(statusObj) {
-      Meteor.autosubscribe(function () {
-        Meteor.subscribe("counts-by-status", statusObj.statusName, statusObj.statusLabel, statusObj.status);
-      });
-    });
-
-    _.each(Meteor.users.find().fetch(), function(userObj) {
-      Meteor.autosubscribe(function () {
-        Meteor.subscribe("counts-by-staff", userObj.profile.name, userObj._id);
-      });
-      Meteor.subscribe("counts-by-staff", "Unassigned", "unassigned");
-    });
-    
-  });
+// Subscriptions
+Meteor.subscribe("directory");
+Meteor.subscribe("tasks", function() {
+  // Tasks.find().observe({
+  //   added: function(doc) {
+  //     console.log(doc);
+  //     showModal('New Task!', doc.name); 
+  //   },
+  //   removed: function(doc) {
+  //     console.log(doc);
+  //     showModal('Task Reassigned!', doc.name);
+  //   }
+  // });
 });
 
 
-Global = {   
-  alert: function(type, message) {
-    className = 'alert';
-    if(type == 'warning' || type == 'info' || type == 'error') {
-      className += ' alert-'+type
-    }
-    if(type == 'warning') {
-      message = 'Warning: '+message;
-    }
-    alert = $('<div class="'+className+'">  <button class="close" data-dismiss="alert">×</button>  '+message+'</div>').alert();
-    $('#page').prepend(alert);
+
+// helper
+
+var showModal = function (title, body) {
+  Session.set("modalTitle", title);
+  Session.set("modalBody", body);
+  Session.set("showModal", true);
+};
+
+var showAlert = function (type, message) {
+  className = 'alert';
+  if(type == 'warning' || type == 'info' || type == 'error') {
+    className += ' alert-'+type
+  }
+  if(type == 'warning') {
+    message = 'Warning: '+ message;
+  }
+  alert = $('<div class="' + className + '">  <button class="close" data-dismiss="alert">×</button>  ' + message + '</div>').alert();
+  $('.page').prepend(alert);
+}
+
+
+// Paths
+
+Meteor.pages({
+  '/' : { to: 'login', as: 'login', before: [redirectWhenLoggedIn] },
+  '/tasks' : { to: 'taskIndex', nav: 'tasks' },
+  '/tasks/:_id' : { to: 'taskDetails', before: [setTask], nav: 'tasks' },
+  '/tasks/:_id/assign' : { to: 'taskAssign', before: [setTask], nav: 'tasks' },
+  '/profile' : { to: 'profile', nav: 'profile', before: [authorize] },
+  '*' : 'login'
+});
+
+
+// Path helpers
+
+function setTask(context) {
+  Session.set("taskId", context.params._id);
+}
+
+function newTask(context) {
+  Session.set("taskId", null);
+}
+
+function redirectWhenLoggedIn(context) {
+  var user = Meteor.user();
+  if (user && !Meteor.loggingIn()) {
+      context.redirect(Meteor.taskIndexPath());
+  } 
+}
+
+function authorize(context) {
+  if (!Meteor.user()) {
+    context.redirect('/login');
   }
 }
+
+
+// Template helpers
+
+Handlebars.registerHelper('task', function () {
+  return Tasks.findOne(Session.get('taskId'));
+});
+
+Handlebars.registerHelper('tasks', function () {
+  return Tasks.find({}, {sort: {staffId: 1}});
+});
+
+Handlebars.registerHelper('displayName', function(id) {
+  if (!id) {
+    return Meteor.user().profile.name;
+  } else if (id === "unassigned") {
+    return "Unassigned";
+  } else {
+    return Meteor.users.findOne({_id: id}).profile.name;
+  }
+});
+
+Handlebars.registerHelper('btn', function(status) {
+  var btns = {
+    'R' : 'btn-danger',
+    'Y' : 'btn-warning',
+    'G' : 'btn-success'
+  }
+  return btns[status] ? btns[status] : '';
+});
+
+Handlebars.registerHelper('showModal', function() {
+    return Session.get('showModal');
+});
+

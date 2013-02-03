@@ -1,6 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Tasks
 
+// Define Minimongo collection to match server/publish.js.
 Tasks = new Meteor.Collection("tasks");
 
 // model permissions
@@ -19,13 +20,6 @@ Tasks.allow({
   },
   fetch: ['managerId']
 });
-
-
-///////////////////////////////////////////////////////////////////////////////
-// Task Counts
-StatusCounts = new Meteor.Collection("status-counts");
-StaffCounts = new Meteor.Collection("staff-counts");
-
 
 
 
@@ -67,5 +61,12 @@ Meteor.methods({
     }
 
     Tasks.update(task._id, {$set: {subtasks: subtasks, status: status}});
+  },
+  
+  updateTaskAssigned : function(taskId, staffId) {
+    var task = Tasks.findOne(taskId);
+    var staff = Meteor.users.find(staffId);
+    if (!task || !staff) return;
+    Tasks.update(task._id, {$set: {staffId: staffId}});
   }
 });

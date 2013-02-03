@@ -1,0 +1,7 @@
+<template name="taskIndex">
+  {{#if currentUser.profile.manager}}
+    {{> managerTaskList}}
+  {{else}}
+    {{> staffTaskList}}
+  {{/if}}
+</template>
