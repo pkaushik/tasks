@@ -1,10 +1,10 @@
 <template name="managerTaskListItem">
   <li>
-    <a href="#managerTaskDetails/select?id={{_id}}">
+    <a href="/tasks/{{_id}}">
       <div class="row">
-        <div class="span3">{{workerName workerId}}</div> 
+        <div class="span3">{{displayName staffId}}</div> 
         <div class="span3">{{name}}</div> 
-        <div class="span1">{{status}}</div>
+        <div class="span1"><span class="btn {{btn status}} btn-tick"></span></div>
       </div>
     </a>
   </li>

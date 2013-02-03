@@ -1,5 +1,5 @@
 <template name="nav">
-  <div class="navbar navbar-fixed-top">
+  <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         {{#if currentUser}}
@@ -14,11 +14,11 @@
         <div class="nav-collapse">
           <ul class="nav">
             {{#if currentUser}}
-              <li>
-                <a>Options</a>
+              <li class="{{navClassFor 'tasks'}}">
+                <a href="/tasks">Tasks</a>
               </li>
-              <li>
-                <a>Settings</a>
+              <li class="{{navClassFor 'profile'}}">
+                <a href="/profile">Profile</a>
               </li>
               <li>
                 <a id='logout'>Logout</a>

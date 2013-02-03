@@ -1,0 +1,32 @@
+<template name="taskAssign">
+  {{#with task}}
+    <legend>{{name}}</legend>
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active">
+        <a>
+          <div class="row">
+            <div class="span4">Assigned to</div>  
+          </div>
+        </a>
+      </li>
+      {{#each currentUser.profile.staffIds}}
+        <li>
+          <a>
+            <div class="row">
+              <div class="span4">{{displayName staffId}}</div> 
+              <div class="span1"><span id="{{staffId}}" class="btn btn-tick update-task-assigned">{{tick task staffId}}</span></div>
+            </div>
+          </a>
+        </li>
+      {{/each}}
+        <li>
+          <a>
+            <div class="row">
+              <div class="span4">Unassigned</div> 
+              <div class="span1"><span id="unassigned" class="btn btn-tick update-task-assigned">{{tick task "unassigned"}}</span></div>
+            </div>
+          </a>
+        </li>
+    </ul>
+  {{/with}}
+</template>
