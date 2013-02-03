@@ -10,20 +10,20 @@
         </a>
       </li>
       {{#each currentUser.profile.staffIds}}
-        <li>
+        <li id="{{staffId}}" class="update-task-assigned">
           <a>
             <div class="row">
               <div class="span4">{{displayName staffId}}</div> 
-              <div class="span1"><span id="{{staffId}}" class="btn btn-tick update-task-assigned">{{tick task staffId}}</span></div>
+              <div class="span1"><span class="btn btn-tick disabled">{{tick task staffId}}</span></div>
             </div>
           </a>
         </li>
       {{/each}}
-        <li>
+        <li id="unassigned" class="update-task-assigned">
           <a>
             <div class="row">
               <div class="span4">Unassigned</div> 
-              <div class="span1"><span id="unassigned" class="btn btn-tick update-task-assigned">{{tick task "unassigned"}}</span></div>
+              <div class="span1"><span class="btn btn-tick">{{tick task "unassigned"}}</span></div>
             </div>
           </a>
         </li>

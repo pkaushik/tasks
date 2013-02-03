@@ -1,11 +1,29 @@
 // Subscriptions
-
-Meteor.subscribe("tasks");
 Meteor.subscribe("directory");
+Meteor.subscribe("tasks", function() {
+  // Tasks.find().observe({
+  //   added: function(doc) {
+  //     console.log(doc);
+  //     showModal('New Task!', doc.name); 
+  //   },
+  //   removed: function(doc) {
+  //     console.log(doc);
+  //     showModal('Task Reassigned!', doc.name);
+  //   }
+  // });
+});
+
+
 
 // helper
 
-function alertMessage(type, message) {
+var showModal = function (title, body) {
+  Session.set("modalTitle", title);
+  Session.set("modalBody", body);
+  Session.set("showModal", true);
+};
+
+var showAlert = function (type, message) {
   className = 'alert';
   if(type == 'warning' || type == 'info' || type == 'error') {
     className += ' alert-'+type
@@ -56,16 +74,12 @@ function authorize(context) {
 
 // Template helpers
 
-Handlebars.registerHelper('navClassFor', function (name) {
-  return Session.equals('nav', name) ? 'active' : '';
-});
-
 Handlebars.registerHelper('task', function () {
   return Tasks.findOne(Session.get('taskId'));
 });
 
 Handlebars.registerHelper('tasks', function () {
-  return Tasks.find();
+  return Tasks.find({}, {sort: {staffId: 1}});
 });
 
 Handlebars.registerHelper('displayName', function(id) {
@@ -87,4 +101,7 @@ Handlebars.registerHelper('btn', function(status) {
   return btns[status] ? btns[status] : '';
 });
 
+Handlebars.registerHelper('showModal', function() {
+    return Session.get('showModal');
+});
 

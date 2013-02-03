@@ -1,6 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Tasks
 
+// Define Minimongo collection to match server/publish.js.
 Tasks = new Meteor.Collection("tasks");
 
 // model permissions
