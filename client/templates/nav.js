@@ -6,6 +6,7 @@ Template.nav.helpers({
 
 Template.nav.events = {
   'click #logout': function() {
+    Spark.finalize($('body')[0]);
     Meteor.logout(function(error) {
       Meteor.go('/');
       if (error) {

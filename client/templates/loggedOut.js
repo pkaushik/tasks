@@ -1,4 +1,4 @@
-Template.login.events({
+Template.loggedOut.events({
   'click #login': 
     function (event, template) { 
       var u = template.find('#username').value;
