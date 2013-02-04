@@ -63,7 +63,7 @@ Meteor.methods({
     Tasks.update(task._id, {$set: {subtasks: subtasks, status: status}});
   },
   
-  updateTaskAssigned : function(taskId, staffId) {
+  updateTaskAssignment : function(taskId, staffId) {
     var task = Tasks.findOne(taskId);
     var staff = Meteor.users.find(staffId);
     if (!task || !staff) return;

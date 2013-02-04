@@ -14,4 +14,3 @@ Template.staffSubtaskListItem.events({
       });
     }
 });
-
