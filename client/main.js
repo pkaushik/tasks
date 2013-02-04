@@ -40,11 +40,12 @@ var showAlert = function (type, message) {
 
 Meteor.pages({
   '/' : { to: 'login', as: 'login', before: [redirectWhenLoggedIn] },
-  '/tasks' : { to: 'taskIndex', nav: 'tasks' },
-  '/tasks/:_id' : { to: 'taskDetails', before: [setTask], nav: 'tasks' },
-  '/tasks/:_id/assign' : { to: 'taskAssign', before: [setTask], nav: 'tasks' },
+  '/tasks' : { to: 'taskIndex', before: [authorize], nav: 'tasks' },
+  '/tasks/:_id' : { to: 'taskDetails', before: [authorize, setTask], nav: 'tasks' },
+  '/tasks/:_id/assign' : { to: 'taskAssign', before: [authorize, setTask], nav: 'tasks' },
   '/profile' : { to: 'profile', nav: 'profile', before: [authorize] },
-  '*' : 'login'
+  '/login': { to: 'login', as: 'login', before: [redirectWhenLoggedIn] },
+  '*' : { to: 'login', as: 'login', before: [redirectWhenLoggedIn] }
 });
 
 
@@ -61,8 +62,8 @@ function newTask(context) {
 function redirectWhenLoggedIn(context) {
   var user = Meteor.user();
   if (user && !Meteor.loggingIn()) {
-      context.redirect(Meteor.taskIndexPath());
-  } 
+    context.redirect(Meteor.taskIndexPath());
+  }
 }
 
 function authorize(context) {
