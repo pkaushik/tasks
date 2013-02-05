@@ -62,7 +62,7 @@ function newTask(context) {
 function redirectWhenLoggedIn(context) {
   var user = Meteor.user();
   if (user && !Meteor.loggingIn()) {
-    context.redirect(Meteor.taskIndexPath());
+    context.redirect('/tasks');
   }
 }
 
