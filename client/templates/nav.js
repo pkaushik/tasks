@@ -1,12 +1,11 @@
 Template.nav.helpers({
   navClassFor: function (name) {
-    return Session.equals('nav', name) ? 'active' : '';
+    return Meteor.router.navEquals(name) ? 'active' : '';
   }
 });
 
 Template.nav.events = {
   'click #logout': function() {
-    Spark.finalize($('body')[0]);
     Meteor.logout(function(error) {
       Meteor.go('/');
       if (error) {

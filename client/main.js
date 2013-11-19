@@ -1,18 +1,7 @@
 // Subscriptions
-Meteor.subscribe("directory");
-Meteor.subscribe("tasks", function() {
-  // Tasks.find().observe({
-  //   added: function(doc) {
-  //     console.log(doc);
-  //     showModal('New Task!', doc.name); 
-  //   },
-  //   removed: function(doc) {
-  //     console.log(doc);
-  //     showModal('Task Reassigned!', doc.name);
-  //   }
-  // });
-});
 
+Meteor.subscribe("directory");
+Meteor.subscribe("tasks");
 
 
 // global helper functions
