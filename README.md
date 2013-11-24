@@ -7,7 +7,8 @@ Tested on Meteor 0.6.6.3
 
 (c) Pallavi Kaushik - all rights reserved
 
-Users
+Users:
+
 Curly Howard
 username: curly
 password: 'secret' (without quotes)
