@@ -3,7 +3,7 @@ Meteor Tasks
 
 WIP
 
-Tested on Meteor 0.5.4
+Tested on Meteor 0.6.6.3
 
 (c) Pallavi Kaushik - all rights reserved
 
